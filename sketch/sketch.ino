@@ -1,3 +1,5 @@
+#include <LinkedList.h>
+#include <ParallelServo.h>
 #include "src/string/string.h" 
 #include "src/types/types.h" 
 
@@ -6,6 +8,8 @@
 
 #define BAUD_RATE 115200
 #define START_DELAY_MS 500
+
+LinkedList<ParallelServo> servos_list;
 
 extern String read_serial_user_input_string(void);
 

@@ -4,6 +4,7 @@
 
 **Project's dependencies**:
 + [LinkedList](https://github.com/ivanseidel/LinkedList) (you can install with `arduino-cli lib install LinkedList`)
++ [ParallelServo](https://github.com/kevinmarquesp/ParallelServo)
 
 Development notes and reminders:
 + *All functions should have the following arguments:*
@@ -12,8 +13,8 @@ Development notes and reminders:
     + *`String argv`*
 
 Next todos:
-+ [ ] Add the [ParallelServo](https://github.com/kevinmarquesp/ParallelServo) library as dependencie
-+ [ ] Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file
++ [x] ~~Add the [ParallelServo](https://github.com/kevinmarquesp/ParallelServo) library as dependencie~~
++ [x] ~~Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file~~
 + [ ] Use the `HashMap` object to handle all the shell command/execution stuff
 + [ ] Create the main command colections:
     + [ ] Add the `attach` command to the shell (with the `a` alias)
