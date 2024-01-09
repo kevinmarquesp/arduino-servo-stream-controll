@@ -5,6 +5,7 @@
 **Project's dependencies**:
 + [LinkedList](https://github.com/ivanseidel/LinkedList) (you can install with `arduino-cli lib install LinkedList`)
 + [ParallelServo](https://github.com/kevinmarquesp/ParallelServo)
++ [StringSplitter](https://github.com/aharshac/StringSplitter)
 
 Development notes and reminders:
 + *All functions should have the following arguments:*
