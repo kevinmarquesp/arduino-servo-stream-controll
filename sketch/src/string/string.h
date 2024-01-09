@@ -1,7 +1,8 @@
 #pragma once
 #include <Arduino.h>
+#include "../types/types.h"
 
 namespace string {
-  void clean_input_string(String& user_input);
-  uint8_t count_character(String& user_input, char target_char);
+  void clean_input_string(String&);
+  u8 count_character(String&, char);
 }  //namespace string
