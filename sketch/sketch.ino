@@ -1,5 +1,6 @@
 #include <LinkedList.h>
 #include <ParallelServo.h>
+#include "src/HashMap/HashMap.h"
 #include "src/string/string.h" 
 #include "src/types/types.h" 
 
@@ -10,11 +11,14 @@
 #define START_DELAY_MS 500
 
 LinkedList<ParallelServo> servos_list;
+HashMap<String, void (*)(void)> shell_hm;
 
 extern String read_serial_user_input_string(void);
 
 void setup(void) {
   Serial.begin(BAUD_RATE);
+
+  shell_hm.add("ping", [](void){ println("pong"); });
 
   delay(START_DELAY_MS);
 }
@@ -38,4 +42,16 @@ void loop(void) {
   print(argc);
   print(" -> ");
   println(argv);
+
+  status_t<void (*)(void)> get_status = shell_hm.get(command);
+
+  if (!get_status.is_ok) {
+    print("err : the command `");
+    print(command);
+    println("` doesn't exist");
+
+    return;
+  }
+
+  get_status.acc();
 }

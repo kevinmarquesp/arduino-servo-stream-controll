@@ -15,7 +15,7 @@ Development notes and reminders:
 Next todos:
 + [x] ~~Add the [ParallelServo](https://github.com/kevinmarquesp/ParallelServo) library as dependencie~~
 + [x] ~~Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file~~
-+ [ ] Use the `HashMap` object to handle all the shell command/execution stuff
++ [x] ~~Use the `HashMap` object to handle all the shell command/execution stuff~~
 + [ ] Create the main command colections:
     + [ ] Add the `attach` command to the shell (with the `a` alias)
     + [ ] Add the `set_min` command to the shell (with the `smn` alias)
