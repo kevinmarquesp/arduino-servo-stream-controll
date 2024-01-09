@@ -5,5 +5,6 @@
 #include "../types/types.h"
 
 namespace commands {
+  void begin(LinkedList<ParallelServo>&, u8, String);
   void attach(LinkedList<ParallelServo>&, u8, String);
 }  //namespace commands

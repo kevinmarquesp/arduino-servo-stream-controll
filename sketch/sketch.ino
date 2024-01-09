@@ -21,6 +21,9 @@ extern void display_command_dosent_exist_error(String, u8);
 void setup(void) {
   Serial.begin(BAUD_RATE);
 
+  shell_hm.add("begin", commands::begin);
+  shell_hm.add("b", commands::begin);
+
   shell_hm.add("attach", commands::attach);
   shell_hm.add("a", commands::attach);
 
