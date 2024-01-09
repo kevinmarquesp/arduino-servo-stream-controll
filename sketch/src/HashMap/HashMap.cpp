@@ -1,7 +1,7 @@
 #include "HashMap.h"
 
 template <typename K, typename V>
-void HashMap::add(K key, V val) {
+void HashMap<K, V>::add(K key, V val) {
   if (_keys_list == nullptr || _vals_list == nullptr) {
     _keys_list = new LinkedList<K>();
     _vals_list = new LinkedList<V>();
@@ -12,7 +12,7 @@ void HashMap::add(K key, V val) {
 }
 
 template <typename K, typename V>
-status_t<V> HashMap::get(K key) {
+status_t<V> HashMap<K, V>::get(K key) {
   for (u8 i = 0; i < _keys_list->size(); ++i)
     if (_keys_list->get(i) == key)
       return {true, _vals_list->get(i)};

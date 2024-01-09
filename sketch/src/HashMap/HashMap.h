@@ -15,4 +15,4 @@ public:
 
   void add(K, V);
   status_t<V> get(K);
-}
+};
