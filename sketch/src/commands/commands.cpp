@@ -62,3 +62,33 @@ void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String ar
     servos_list.get(i).attach(pin);
   }
 }
+
+void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
+  if (argc == 0) {
+    println("err : arguments are required, zero specifyed...");
+    return;
+  }
+
+  if (servos_list.size() == 0) {
+    println("err : there is no servos yet, use the `begin/*` command for that");
+    return;
+  }
+
+  const char ignore_char = '@';  //ignores arguments that starts with this char
+  StringSplitter* args = new StringSplitter(argv, ' ', argc);
+  u8 items_count = args->getItemCount();
+
+  for (u8 i = 0; i < items_count; ++i) {
+    if (i == servos_list.size())
+      break;
+
+    String str_deg = args->getItemAtIndex(i);
+
+    if (str_deg.charAt(0) == ignore_char)
+      continue;
+
+    u8 deg = str_deg.toInt();
+
+    servos_list.get(i).write(deg);
+  }
+}

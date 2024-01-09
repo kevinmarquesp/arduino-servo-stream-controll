@@ -7,4 +7,5 @@
 namespace commands {
   void begin(LinkedList<ParallelServo>&, u8, String);
   void attach(LinkedList<ParallelServo>&, u8, String);
+  void write_all(LinkedList<ParallelServo>&, u8, String);
 }  //namespace commands

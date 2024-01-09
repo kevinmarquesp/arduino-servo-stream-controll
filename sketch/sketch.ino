@@ -27,6 +27,9 @@ void setup(void) {
   shell_hm.add("attach", commands::attach);
   shell_hm.add("a", commands::attach);
 
+  shell_hm.add("write_all", commands::write_all);
+  shell_hm.add("wa", commands::write_all);
+
   delay(START_DELAY_MS);
 }
 
