@@ -1,8 +1,9 @@
 #include <LinkedList.h>
 #include <ParallelServo.h>
 #include "src/HashMap/HashMap.h"
-#include "src/string/string.h" 
 #include "src/types/types.h" 
+#include "src/commands/commands.h"
+#include "src/string/string.h" 
 
 #define print(c) Serial.print(c)
 #define println(c) Serial.println(c)
@@ -20,12 +21,8 @@ extern void display_command_dosent_exist_error(String, u8);
 void setup(void) {
   Serial.begin(BAUD_RATE);
 
-  shell_hm.add("ping", [](LinkedList<ParallelServo>& _servos_list, u8 _argc, String _argv){
-    print("[pong] ");
-    print(_argc);
-    print("/");
-    println(_argv);
-  });
+  shell_hm.add("attach", commands::attach);
+  shell_hm.add("a", commands::attach);
 
   delay(START_DELAY_MS);
 }
@@ -44,8 +41,6 @@ void loop(void) {
     return;
   }
 
-  display_command_arity(command, argc, argv);
-
   status_t<command_lambda_t> get_status = shell_hm.get(command);
 
   if (!get_status.is_ok) {
@@ -53,5 +48,6 @@ void loop(void) {
     return;
   }
 
+  display_command_arity(command, argc, argv);
   get_status.acc(servos_list, argc, argv);
 }

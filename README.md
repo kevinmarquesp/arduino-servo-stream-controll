@@ -17,7 +17,7 @@ Next todos:
 + [x] ~~Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file~~
 + [x] ~~Use the `HashMap` object to handle all the shell command/execution stuff~~
 + [ ] Create the main command colections:
-    + [ ] Add the `attach` command to the shell (with the `a` alias)
+    + [x] ~~Add the `attach` command to the shell (with the `a` alias)~~
     + [ ] Add the `set_min` command to the shell (with the `smn` alias)
     + [ ] Add the `set_max` command to the shell (with the `smx` alias)
     + [ ] Add the `attach_min_max` command to the shell (with the `amm` alias)
