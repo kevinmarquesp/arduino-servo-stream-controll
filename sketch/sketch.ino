@@ -14,6 +14,8 @@ LinkedList<ParallelServo> servos_list;
 HashMap<String, void (*)(void)> shell_hm;
 
 extern String read_serial_user_input_string(void);
+extern void display_command_arity(String, u8, String);
+extern void display_command_dosent_exist_error(String, u8);
 
 void setup(void) {
   Serial.begin(BAUD_RATE);
@@ -37,19 +39,12 @@ void loop(void) {
     return;
   }
 
-  print(command);
-  print("/");
-  print(argc);
-  print(" -> ");
-  println(argv);
+  display_command_arity(command, argc, argv);
 
   status_t<void (*)(void)> get_status = shell_hm.get(command);
 
   if (!get_status.is_ok) {
-    print("err : the command `");
-    print(command);
-    println("` doesn't exist");
-
+    display_command_dosent_exist_error(command, argc);
     return;
   }
 
