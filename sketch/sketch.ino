@@ -11,7 +11,7 @@
 #define START_DELAY_MS 500
 
 LinkedList<ParallelServo> servos_list;
-HashMap<String, void (*)(void)> shell_hm;
+HashMap<String, command_lambda_t> shell_hm;
 
 extern String read_serial_user_input_string(void);
 extern void display_command_arity(String, u8, String);
@@ -20,7 +20,12 @@ extern void display_command_dosent_exist_error(String, u8);
 void setup(void) {
   Serial.begin(BAUD_RATE);
 
-  shell_hm.add("ping", [](void){ println("pong"); });
+  shell_hm.add("ping", [](LinkedList<ParallelServo>& _servos_list, u8 _argc, String _argv){
+    print("[pong] ");
+    print(_argc);
+    print("/");
+    println(_argv);
+  });
 
   delay(START_DELAY_MS);
 }
@@ -41,12 +46,12 @@ void loop(void) {
 
   display_command_arity(command, argc, argv);
 
-  status_t<void (*)(void)> get_status = shell_hm.get(command);
+  status_t<command_lambda_t> get_status = shell_hm.get(command);
 
   if (!get_status.is_ok) {
     display_command_dosent_exist_error(command, argc);
     return;
   }
 
-  get_status.acc();
+  get_status.acc(servos_list, argc, argv);
 }
