@@ -1,3 +1,5 @@
+#include "src/string/string.h" 
+
 #define print(c) Serial.print(c)
 #define println(c) Serial.println(c)
 
@@ -14,11 +16,21 @@ void setup(void) {
 
 void loop(void) {
   String user_input = read_serial_user_input_string();
+  uint8_t first_space_idx = user_input.indexOf(' ');
+  uint8_t user_input_len = user_input.length();
+
+  String command = user_input.substring(0, first_space_idx);
+  String argv = user_input.substring(first_space_idx + 1, user_input_len);
+  uint8_t argc = string::count_character(user_input, ' ');
 
   if (user_input.length() == 0) {
     println("err : command not specified");
     return;
   }
 
-  println(user_input);
+  print(command);
+  print("/");
+  print(argc);
+  print(" -> ");
+  println(argv);
 }
