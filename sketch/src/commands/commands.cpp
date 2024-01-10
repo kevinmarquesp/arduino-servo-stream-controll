@@ -3,17 +3,10 @@
 
 #define print(c) Serial.print(c)
 #define println(c) Serial.println(c)
+#define throw_when(cond) if (cond) { println("!err : wrong usage"); return; }
 
 void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
-  if (argc == 0) {
-    println("err : arguments are required, zero specifyed...");
-    return;
-  }
-
-  if (servos_list.size() > 0) {
-    println("warn : it will clean the current list and create a new one");
-    servos_list.clear();
-  }
+  throw_when(argc == 0 || servos_list.size() > 0);
 
   const char dlmtr = ':';  //each sub-arg will be separated by this delimeter
   StringSplitter* args = new StringSplitter(argv, ' ', argc);
@@ -23,11 +16,7 @@ void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String arg
     String arg = args->getItemAtIndex(i);
 
     StringSplitter* cases = new StringSplitter(arg, dlmtr, 3);
-
-    if (cases->getItemCount() != 3) {
-      println("err : invalid argument set, should be `pin:min:max`");
-      return;
-    }
+    throw_when(cases->getItemCount() != 3);
 
     u8 pin = cases->getItemAtIndex(0).toInt();
     u8 min = cases->getItemAtIndex(1).toInt();
@@ -41,15 +30,7 @@ void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String arg
 }
 
 void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
-  if (argc == 0) {
-    println("err : arguments are required, zero specifyed...");
-    return;
-  }
-
-  if (servos_list.size() == 0) {
-    println("err : there is no servos yet, use the `begin/*` command for that");
-    return;
-  }
+  throw_when(argc == 0 || servos_list.size() == 0);
 
   StringSplitter* args = new StringSplitter(argv, ' ', argc);
   u8 items_count = args->getItemCount();
@@ -64,15 +45,7 @@ void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String ar
 }
 
 void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
-  if (argc == 0) {
-    println("err : arguments are required, zero specifyed...");
-    return;
-  }
-
-  if (servos_list.size() == 0) {
-    println("err : there is no servos yet, use the `begin/*` command for that");
-    return;
-  }
+  throw_when(argc == 0 || servos_list.size() == 0);
 
   const char ignore_char = '@';  //ignores arguments that starts with this char
   StringSplitter* args = new StringSplitter(argv, ' ', argc);
