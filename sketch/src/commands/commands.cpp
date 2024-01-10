@@ -1,4 +1,4 @@
-#include <StringSplitter.h>
+#include "../string/string.h"
 #include "commands.h"
 
 #define print(c) Serial.print(c)
@@ -8,60 +8,52 @@
 void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() > 0);
 
-  const char dlmtr = ':';  //each sub-arg will be separated by this delimeter
-  StringSplitter* args = new StringSplitter(argv, ' ', argc);
-  u8 items_count = args->getItemCount();
+  const char config_dlmtr = ':';  //each sub-arg will be separated by this delimeter
 
-  for (u8 i = 0; i < items_count; ++i) {
-    String arg = args->getItemAtIndex(i);
+  LinkedList<String> args_list = string::split(argv, ' ');
 
-    StringSplitter* cases = new StringSplitter(arg, dlmtr, 3);
-    throw_when(cases->getItemCount() != 3);
+  for (u8 i = 0; i < args_list.size(); ++i) {
+    String curr_arg = args_list.get(i);
 
-    u8 pin = cases->getItemAtIndex(0).toInt();
-    u8 min = cases->getItemAtIndex(1).toInt();
-    u8 max = cases->getItemAtIndex(2).toInt();
+    LinkedList<String> servos_config_list = string::split(curr_arg, config_dlmtr);
+    throw_when(servos_config_list.size() != 3);
+
+    u8 pin = servos_config_list.get(0).toInt();
+    u8 min = servos_config_list.get(1).toInt();
+    u8 max = servos_config_list.get(2).toInt();
 
     ParallelServo new_servo;
 
     new_servo.begin(pin, min, max);
     servos_list.add(new_servo);
-
-    delete cases;
   }
-
-  delete args;
 }
 
 void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 
-  StringSplitter* args = new StringSplitter(argv, ' ', argc);
-  u8 items_count = args->getItemCount();
+  LinkedList<String> args_list = string::split(argv, ' ');
 
-  for (u8 i = 0; i < items_count; ++i) {
+  for (u8 i = 0; i < args_list.size(); ++i) {
     if (i == servos_list.size())
       break;
 
-    u8 pin = args->getItemAtIndex(i).toInt();
+    u8 pin = args_list.get(i).toInt();
     servos_list.get(i).attach(pin);
   }
-
-  delete args;
 }
 
 void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 
   const char ignore_char = '@';  //ignores arguments that starts with this char
-  StringSplitter* args = new StringSplitter(argv, ' ', argc);
-  u8 items_count = args->getItemCount();
+  LinkedList<String> args_list = string::split(argv, ' ');
 
-  for (u8 i = 0; i < items_count; ++i) {
+  for (u8 i = 0; i < args_list.size(); ++i) {
     if (i == servos_list.size())
       break;
 
-    String str_deg = args->getItemAtIndex(i);
+    String str_deg = args_list.get(i);
 
     if (str_deg.charAt(0) == ignore_char)
       continue;
@@ -70,6 +62,4 @@ void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String
 
     servos_list.get(i).write(deg);
   }
-
-  delete args;
 }

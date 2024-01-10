@@ -5,7 +5,6 @@
 **Project's dependencies**:
 + [LinkedList](https://github.com/ivanseidel/LinkedList) (you can install with `arduino-cli lib install LinkedList`)
 + [ParallelServo](https://github.com/kevinmarquesp/ParallelServo)
-+ [StringSplitter](https://github.com/aharshac/StringSplitter)
 
 Development notes and reminders:
 + *All functions should have the following arguments:*
@@ -23,4 +22,6 @@ Next todos:
     + [x] ~~Add the `set_max` command to the shell (with the `smx` alias)~~
     + [x] ~~Add the `attach_min_max` command to the shell (with the `amm` alias)~~
 + [x] ~~Clen up memory garbage by deleting the `StringSplitter*` pointers~~
-+ [ ] Create a local function, on the `commands` module, that process the input data
++ [x] ~~Create a local function, on the `commands` module, that process the input data~~
++ [ ] Put the argument special character (shell syntax related) into global macros
++ [ ] Fix the behavior of the begin command : verify arguments and apply changes after

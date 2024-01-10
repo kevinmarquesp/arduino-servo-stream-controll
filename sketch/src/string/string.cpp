@@ -28,3 +28,20 @@ u8 string::count_character(String& user_input, char target_char) {
 
   return counter;
 }
+
+LinkedList<String> string::split(String& base_str, char dlmtr) {
+  LinkedList<String> split_list;
+
+  u16 start = 0;
+  u16 base_len = base_str.length();
+
+  for (u8 i = 0; i < base_len; ++i) {
+    if (base_str.charAt(i) == dlmtr) {
+      split_list.add(base_str.substring(start, i));
+      start = i + 1;
+    }
+  }
+
+  split_list.add(base_str.substring(start, base_len));
+  return split_list;
+}
