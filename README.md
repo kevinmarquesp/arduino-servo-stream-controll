@@ -24,4 +24,4 @@ Next todos:
 + [x] ~~Clen up memory garbage by deleting the `StringSplitter*` pointers~~
 + [x] ~~Create a local function, on the `commands` module, that process the input data~~
 + [x] ~~Put the argument special character (shell syntax related) into global macros~~
-+ [ ] Fix the behavior of the begin command : verify arguments and apply changes after
++ [x] ~~Fix the behavior of the begin command : verify arguments and apply changes after~~

@@ -9,13 +9,25 @@
 #define println(c) Serial.println(c)
 #define throw_when(cond) if (cond) { println("!err : wrong usage"); return; }
 
+class BeginData {
+public:
+  bool ignore;
+  u8 pin, min, max;
+};
+
 void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() > 0);
 
   LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
+  LinkedList<BeginData> begin_data_list;
 
-  for (u8 i = 0; i < args_list.size(); ++i) {
+  for (u8 i = 0; i < args_list.size(); ++i) {  //parse arguments
     String curr_arg = args_list.get(i);
+
+    if (curr_arg.charAt(0) == IGNORE_CHAR) {
+      begin_data_list.add({ true, NULL, NULL, NULL });
+      continue;
+    }
 
     LinkedList<String> servos_config_list = string::split(curr_arg, SUB_ARGS_DLMTR);
     throw_when(servos_config_list.size() != 3);
@@ -24,9 +36,19 @@ void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String arg
     u8 min = servos_config_list.get(1).toInt();
     u8 max = servos_config_list.get(2).toInt();
 
+    throw_when(min < 0 || min > 180 || max < 0 || max > 180 || max < min);
+    begin_data_list.add({ false, pin, min, max });
+  }
+
+  for (u8 i = 0; i < begin_data_list.size(); ++i) {  //apply changes
+    BeginData curr_data = begin_data_list.get(i);
+
+    if (curr_data.ignore)
+      continue;
+
     ParallelServo new_servo;
 
-    new_servo.begin(pin, min, max);
+    new_servo.begin(curr_data.pin, curr_data.min, curr_data.max);
     servos_list.add(new_servo);
   }
 }
