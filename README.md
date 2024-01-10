@@ -22,5 +22,5 @@ Next todos:
     + [x] ~~Add the `set_min` command to the shell (with the `smn` alias)~~
     + [x] ~~Add the `set_max` command to the shell (with the `smx` alias)~~
     + [x] ~~Add the `attach_min_max` command to the shell (with the `amm` alias)~~
-
-
++ [x] ~~Clen up memory garbage by deleting the `StringSplitter*` pointers~~
++ [ ] Create a local function, on the `commands` module, that process the input data

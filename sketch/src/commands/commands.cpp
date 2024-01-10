@@ -26,7 +26,11 @@ void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String arg
 
     new_servo.begin(pin, min, max);
     servos_list.add(new_servo);
+
+    delete cases;
   }
+
+  delete args;
 }
 
 void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
@@ -42,6 +46,8 @@ void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String ar
     u8 pin = args->getItemAtIndex(i).toInt();
     servos_list.get(i).attach(pin);
   }
+
+  delete args;
 }
 
 void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
@@ -64,4 +70,6 @@ void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String
 
     servos_list.get(i).write(deg);
   }
+
+  delete args;
 }
