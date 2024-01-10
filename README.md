@@ -23,5 +23,5 @@ Next todos:
     + [x] ~~Add the `attach_min_max` command to the shell (with the `amm` alias)~~
 + [x] ~~Clen up memory garbage by deleting the `StringSplitter*` pointers~~
 + [x] ~~Create a local function, on the `commands` module, that process the input data~~
-+ [ ] Put the argument special character (shell syntax related) into global macros
++ [x] ~~Put the argument special character (shell syntax related) into global macros~~
 + [ ] Fix the behavior of the begin command : verify arguments and apply changes after

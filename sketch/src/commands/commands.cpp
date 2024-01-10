@@ -1,6 +1,10 @@
 #include "../string/string.h"
 #include "commands.h"
 
+#define ARGS_DLMTR ' '
+#define IGNORE_CHAR '@'
+#define SUB_ARGS_DLMTR ':'
+
 #define print(c) Serial.print(c)
 #define println(c) Serial.println(c)
 #define throw_when(cond) if (cond) { println("!err : wrong usage"); return; }
@@ -8,14 +12,12 @@
 void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() > 0);
 
-  const char config_dlmtr = ':';  //each sub-arg will be separated by this delimeter
-
-  LinkedList<String> args_list = string::split(argv, ' ');
+  LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
 
   for (u8 i = 0; i < args_list.size(); ++i) {
     String curr_arg = args_list.get(i);
 
-    LinkedList<String> servos_config_list = string::split(curr_arg, config_dlmtr);
+    LinkedList<String> servos_config_list = string::split(curr_arg, SUB_ARGS_DLMTR);
     throw_when(servos_config_list.size() != 3);
 
     u8 pin = servos_config_list.get(0).toInt();
@@ -32,7 +34,7 @@ void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String arg
 void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 
-  LinkedList<String> args_list = string::split(argv, ' ');
+  LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
 
   for (u8 i = 0; i < args_list.size(); ++i) {
     if (i == servos_list.size())
@@ -46,8 +48,7 @@ void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String ar
 void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 
-  const char ignore_char = '@';  //ignores arguments that starts with this char
-  LinkedList<String> args_list = string::split(argv, ' ');
+  LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
 
   for (u8 i = 0; i < args_list.size(); ++i) {
     if (i == servos_list.size())
@@ -55,7 +56,7 @@ void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String
 
     String str_deg = args_list.get(i);
 
-    if (str_deg.charAt(0) == ignore_char)
+    if (str_deg.charAt(0) == IGNORE_CHAR)
       continue;
 
     u8 deg = str_deg.toInt();
