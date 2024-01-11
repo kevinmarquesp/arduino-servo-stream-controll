@@ -4,7 +4,7 @@
 
 #define u8 uint8_t
 
-using llps_t = LinkedList<ParallelServo>;
+using llps_t = LinkedList<ParallelServo*>;
 using lambda_command_t = void (*)(llps_t&, u8, String);
 
 template <typename T>

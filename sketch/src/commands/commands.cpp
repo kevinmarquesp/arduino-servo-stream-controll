@@ -46,9 +46,9 @@ void commands::begin(llps_t& servos_list, u8 argc, String argv) {
     if (curr_data.ignore)
       continue;
 
-    ParallelServo new_servo;
+    ParallelServo* new_servo = new ParallelServo;
 
-    new_servo.begin(curr_data.pin, curr_data.min, curr_data.max);
+    new_servo->begin(curr_data.pin, curr_data.min, curr_data.max);
     servos_list.add(new_servo);
   }
 }
@@ -63,7 +63,7 @@ void commands::attach(llps_t& servos_list, u8 argc, String argv) {
       break;
 
     u8 pin = args_list.get(i).toInt();
-    servos_list.get(i).attach(pin);
+    servos_list.get(i)->attach(pin);
   }
 }
 
@@ -83,6 +83,6 @@ void commands::write_all(llps_t& servos_list, u8 argc, String argv) {
 
     u8 deg = str_deg.toInt();
 
-    servos_list.get(i).move(deg, 0, true);
+    servos_list.get(i)->move(deg, 0, true);
   }
 }
