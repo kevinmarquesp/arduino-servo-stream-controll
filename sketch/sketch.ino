@@ -11,7 +11,7 @@
 #define BAUD_RATE 115200
 #define START_DELAY_MS 500
 
-LinkedList<ParallelServo> servos_list;
+llps_t servos_list;
 HashMap<String, lambda_command_t> shell_hm;
 
 extern String read_serial_user_input_string(void);

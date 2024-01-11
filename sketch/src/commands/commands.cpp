@@ -15,7 +15,7 @@ public:
   u8 pin, min, max;
 };
 
-void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
+void commands::begin(llps_t& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() > 0);
 
   LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
@@ -53,7 +53,7 @@ void commands::begin(LinkedList<ParallelServo>& servos_list, u8 argc, String arg
   }
 }
 
-void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
+void commands::attach(llps_t& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 
   LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
@@ -67,7 +67,7 @@ void commands::attach(LinkedList<ParallelServo>& servos_list, u8 argc, String ar
   }
 }
 
-void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String argv) {
+void commands::write_all(llps_t& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 
   LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
