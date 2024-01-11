@@ -83,6 +83,6 @@ void commands::write_all(LinkedList<ParallelServo>& servos_list, u8 argc, String
 
     u8 deg = str_deg.toInt();
 
-    servos_list.get(i).write(deg);
+    servos_list.get(i).move(deg, 0, true);
   }
 }
