@@ -53,25 +53,6 @@ void commands::begin(llps_t& servos_list, u8 argc, String argv) {
   }
 }
 
-void commands::attach(llps_t& servos_list, u8 argc, String argv) {
-  throw_when(argc == 0 || servos_list.size() == 0);
-
-  LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
-
-  for (u8 i = 0; i < args_list.size(); ++i) {
-    if (i == servos_list.size())
-      break;
-
-    String pin_str = args_list.get(i);
-
-    if (pin_str.charAt(0) == IGNORE_CHAR)
-      continue;
-
-    u8 pin = pin_str.toInt();
-    servos_list.get(i)->attach(pin);
-  }
-}
-
 void commands::write_all(llps_t& servos_list, u8 argc, String argv) {
   throw_when(argc == 0 || servos_list.size() == 0);
 

@@ -24,10 +24,10 @@ Development notes and reminders:
     + *`String argv`*
 
 Next todos:
-+ [ ] Remove the `attach` command for now...
 + [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
 + [ ] Create a `get_pos` command for debug propurses
 + [ ] Create a `get_lenght` command for debug propurses
++ [x] ~~Remove the `attach` command for now...~~
 + [x] ~~Add the [ParallelServo](https://github.com/kevinmarquesp/ParallelServo) library as dependencie~~
 + [x] ~~Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file~~
 + [x] ~~Use the `HashMap` object to handle all the shell command/execution stuff~~

@@ -23,7 +23,6 @@ void setup(void) {
   Serial.begin(BAUD_RATE);
 
   add_new_command(shell_hm, "b begin", commands::begin);
-  add_new_command(shell_hm, "a attach", commands::attach);
   add_new_command(shell_hm, "wa write_all", commands::write_all);
 
   delay(START_DELAY_MS);
