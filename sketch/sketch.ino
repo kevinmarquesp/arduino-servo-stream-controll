@@ -17,18 +17,14 @@ HashMap<String, lambda_command_t> shell_hm;
 extern String read_serial_user_input_string(void);
 extern void display_command_arity(String, u8, String);
 extern void display_command_dosent_exist_error(String, u8);
+extern void add_new_command(HashMap<String, lambda_command_t>&, String, lambda_command_t);
 
 void setup(void) {
   Serial.begin(BAUD_RATE);
 
-  shell_hm.add("begin", commands::begin);
-  shell_hm.add("b", commands::begin);
-
-  shell_hm.add("attach", commands::attach);
-  shell_hm.add("a", commands::attach);
-
-  shell_hm.add("write_all", commands::write_all);
-  shell_hm.add("wa", commands::write_all);
+  add_new_command(shell_hm, "b begin", commands::begin);
+  add_new_command(shell_hm, "a attach", commands::attach);
+  add_new_command(shell_hm, "wa write_all", commands::write_all);
 
   delay(START_DELAY_MS);
 }
