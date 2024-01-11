@@ -1,5 +1,16 @@
 # arduino-servo-stream-controll
 
+## Commands Available
+
++ **`b | begin *pin:min:max`**: Use this command to create and attach each servo
+  on each pin specified. The ammount of arguments given will determine how much
+  servos you are dealing with.
+
++ **`wa | write_all *deg`**: Write the position for each servo, the position of
+  each argument will determine which servo you'll select to move (e.g.: the
+  first argument will move the first motor, the seccond argument will move the
+  seccond motor, and so on)
+
 ## Development Notes & Contribution
 
 **Project's dependencies**:
@@ -13,6 +24,10 @@ Development notes and reminders:
     + *`String argv`*
 
 Next todos:
++ [ ] Remove the `attach` command for now...
++ [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
++ [ ] Create a `get_pos` command for debug propurses
++ [ ] Create a `get_lenght` command for debug propurses
 + [x] ~~Add the [ParallelServo](https://github.com/kevinmarquesp/ParallelServo) library as dependencie~~
 + [x] ~~Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file~~
 + [x] ~~Use the `HashMap` object to handle all the shell command/execution stuff~~
