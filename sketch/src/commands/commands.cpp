@@ -72,3 +72,17 @@ void commands::write_all(llps_t& servos_list, u8 argc, String argv) {
     servos_list.get(i)->move(deg, 0, true);
   }
 }
+
+void commands::get_pos(llps_t& servos_list, u8 argc, String argv) {
+  throw_when(servos_list.size() == 0);
+
+  String pos_buff = "";
+
+  for (u8 i = 0; i < servos_list.size(); ++i) {
+    pos_buff.concat(servos_list.get(i)->getPos());
+    pos_buff.concat(' ');
+  }
+
+  string::clean_input_string(pos_buff);
+  println(pos_buff);
+}

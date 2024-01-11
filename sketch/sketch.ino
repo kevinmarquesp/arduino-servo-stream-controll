@@ -24,6 +24,7 @@ void setup(void) {
 
   add_new_command(shell_hm, "b begin", commands::begin);
   add_new_command(shell_hm, "wa write_all", commands::write_all);
+  add_new_command(shell_hm, "gp get_pos", commands::get_pos);
 
   delay(START_DELAY_MS);
 }

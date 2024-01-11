@@ -1,5 +1,8 @@
 # arduino-servo-stream-controll
 
+> ⚠️ **WARNING** ⚠️ <br>
+> This project is still under development; you can test and do stuff, but it isn't ready to be used seriously yet!
+
 ## Commands Available
 
 + **`b | begin *pin:min:max`**: Use this command to create and attach each servo
@@ -24,9 +27,11 @@ Development notes and reminders:
     + *`String argv`*
 
 Next todos:
-+ [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
-+ [ ] Create a `get_pos` command for debug propurses
++ [ ] Write the documentation for the `get_pos` command
++ [ ] Rename the `clean_input_string()` function from the `string` module
 + [ ] Create a `get_lenght` command for debug propurses
++ [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
++ [x] ~~Create a `get_pos` command for debug propurses~~
 + [x] ~~Remove the `attach` command for now...~~
 + [x] ~~Add the [ParallelServo](https://github.com/kevinmarquesp/ParallelServo) library as dependencie~~
 + [x] ~~Create a global (linked) list of `ParallelServo` objects on the `sketch.ino` file~~
