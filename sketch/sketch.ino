@@ -12,7 +12,7 @@
 #define START_DELAY_MS 500
 
 LinkedList<ParallelServo> servos_list;
-HashMap<String, command_lambda_t> shell_hm;
+HashMap<String, lambda_command_t> shell_hm;
 
 extern String read_serial_user_input_string(void);
 extern void display_command_arity(String, u8, String);
@@ -47,7 +47,7 @@ void loop(void) {
     return;
   }
 
-  status_t<command_lambda_t> get_status = shell_hm.get(command);
+  status_t<lambda_command_t> get_status = shell_hm.get(command);
 
   if (!get_status.is_ok) {
     display_command_dosent_exist_error(command, argc);
