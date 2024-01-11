@@ -62,7 +62,12 @@ void commands::attach(llps_t& servos_list, u8 argc, String argv) {
     if (i == servos_list.size())
       break;
 
-    u8 pin = args_list.get(i).toInt();
+    String pin_str = args_list.get(i);
+
+    if (pin_str.charAt(0) == IGNORE_CHAR)
+      continue;
+
+    u8 pin = pin_str.toInt();
     servos_list.get(i)->attach(pin);
   }
 }
