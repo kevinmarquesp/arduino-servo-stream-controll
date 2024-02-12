@@ -16,7 +16,20 @@ public:
 };
 
 void commands::begin(llps_t& servos_list, u8 argc, String argv) {
-  throw_when(argc == 0 || servos_list.size() > 0);
+  throw_when(argc == 0 && servos_list.size() == 0);
+
+  if (servos_list.size() > 0) {
+    for (u8 i = 0; i < servos_list.size(); ++i) {
+      servos_list[i]->detach();
+
+      delete servos_list[i];
+      servos_list[i] = nullptr;
+    }
+
+    servos_list.clear();
+  }
+
+  if (argc == 0) return;
 
   LinkedList<String> args_list = string::split(argv, ARGS_DLMTR);
   LinkedList<BeginData> begin_data_list;
