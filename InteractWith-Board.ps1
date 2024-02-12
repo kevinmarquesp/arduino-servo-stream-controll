@@ -78,6 +78,15 @@ if ($Test) {
         if ($Data.Length -ne 0) {
             Write-Host $Data
         }
+
+        if ([Console]::KeyAvailable) {
+            $key = [Console]::ReadKey($true).Key
+            if ($key -eq "q") {
+                break
+            }
+        }
+
+        Start-Sleep -Milliseconds 50
     }
 
     $Conn.Close()
