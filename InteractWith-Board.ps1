@@ -39,24 +39,32 @@ $Project = $ConnectionData.Project
 $Board = $ConnectionData.Board
 
 if ($Compile) {
-    & $ArduinoCLI.Command compile $ArduinoCLI.Flags`
-        --fqbn $Board.LongName`
-        --port $Board.Port`
-        $Project.SketchDir
+    $Command = "& $($ArduinoCLI.Command) compile $($ArduinoCLI.Flags)
+        --fqbn $($Board.LongName)
+        --port $($Board.Port)
+        $($Project.SketchDir)" -replace "\r\n", ""
+
+    Invoke-Expression $Command
 }
 
 if ($Upload) {
-    & $ArduinoCLI.Command compile $ArduinoCLI.Flags`
-        --fqbn $Board.LongName`
-        --port $Board.Port`
-        --upload $Project.SketchDir
+    $Command = "& $($ArduinoCLI.Command) compile $($ArduinoCLI.Flags)
+        --fqbn $($Board.LongName)
+        --port $($Board.Port)
+        --upload
+        $($Project.SketchDir)" -replace "\r\n", ""
+
+    Invoke-Expression $Command
 }
 
 if ($Test) {
-    & $ArduinoCLI.Command compile $ArduinoCLI.Flags`
-        --fqbn $Board.LongName`
-        --port $Board.Port`
-        --upload $Project.TestsDir
+    $Command = "& $($ArduinoCLI.Command) compile $($ArduinoCLI.Flags)
+        --fqbn $($Board.LongName)
+        --port $($Board.Port)
+        --upload
+        $($Project.TestsDir)" -replace "\r\n", ""
+
+    Invoke-Expression $Command
 
     $Conn = New-Object System.IO.Ports.SerialPort $Board.Port, $Board.BaudRate, None, 8, one
     $Conn.DtrEnable = $True
