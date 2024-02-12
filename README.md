@@ -13,13 +13,18 @@
   first argument will move the first motor, the seccond argument will move the
   seccond motor, and so on)
 
++ **`get_pos/0 (gp)`**: Returns a list of the current servo positions, it is important
+  that the servos was already set by the `begin` command.
+    + Send: `get_pos`
+    + Expect: `50 75 180`
+
 ## Development Notes & Contribution Related
 **Project's dependencies**:
 + [LinkedList](https://github.com/ivanseidel/LinkedList) (you can install with `arduino-cli lib install LinkedList`)
 + [ParallelServo](https://github.com/kevinmarquesp/ParallelServo)
 
 Next todos:
-+ [ ] Write the documentation for the `get_pos` command
 + [ ] Rename the `clean_input_string()` function from the `string` module
 + [ ] Create a `get_lenght` command for debug propurses
 + [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
++ [x] ~~Write the documentation for the `get_pos` command~~
