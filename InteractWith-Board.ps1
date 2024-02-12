@@ -64,6 +64,7 @@ if ($Test) {
         --upload
         $($Project.TestsDir)" -replace "\r\n", ""
 
+    Copy-Item -Recurse -Force "$($Project.SketchDir)/src" $Project.TestsDir
     Invoke-Expression $Command
 
     $Conn = New-Object System.IO.Ports.SerialPort $Board.Port, $Board.BaudRate, None, 8, one
