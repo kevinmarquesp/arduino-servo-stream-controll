@@ -28,7 +28,8 @@
 + [ParallelServo](https://github.com/kevinmarquesp/ParallelServo)
 
 Next todos:
-+ [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
++ [ ] Use gitmodules to handle all the dependencies for a better straight forward development
 + [ ] Create a `get_lenght` command for debug propurses
++ [x] ~~Cleanup the `servos_list` on the `begin` command if it's already filled up~~
 + [x] ~~Rename the `clean_input_string()` function from the `string` module~~
 + [x] ~~Write the documentation for the `get_pos` command~~
