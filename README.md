@@ -28,7 +28,7 @@
 + [ParallelServo](https://github.com/kevinmarquesp/ParallelServo)
 
 Next todos:
-+ [ ] Rename the `clean_input_string()` function from the `string` module
-+ [ ] Create a `get_lenght` command for debug propurses
 + [ ] Cleanup the `servos_list` on the `begin` command if it's already filled up
++ [ ] Create a `get_lenght` command for debug propurses
++ [x] ~~Rename the `clean_input_string()` function from the `string` module~~
 + [x] ~~Write the documentation for the `get_pos` command~~

@@ -83,6 +83,6 @@ void commands::get_pos(llps_t& servos_list, u8 argc, String argv) {
     pos_buff.concat(' ');
   }
 
-  string::clean_input_string(pos_buff);
+  string::sanitize(pos_buff);
   println(pos_buff);
 }

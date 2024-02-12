@@ -13,7 +13,7 @@ inline void strip_inner_character(String& user_input, char strip_target) {
   }
 }
 
-void string::clean_input_string(String& user_input) {
+void string::sanitize(String& user_input) {
   user_input.trim();
   user_input.toLowerCase();
   strip_inner_character(user_input, ' ');

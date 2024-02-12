@@ -5,7 +5,7 @@ inline String read_serial_user_input_string(void) {
     continue;
 
   String user_input = Serial.readStringUntil('\n');
-  string::clean_input_string(user_input);
+  string::sanitize(user_input);
 
   return user_input;
 }
