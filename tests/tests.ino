@@ -1,11 +1,20 @@
-//no tests added yet...
+#include <AUnitVerbose.h>
+
+using namespace aunit;
 
 void setup(void) {
-    Serial.begin(115200);
-    Serial.println("Hello world!");
-    Serial.println("\nThe tests aren't implement yet");
-    Serial.println("but they will soon! :D");
+  #if !defined(EPOXY_DUINO)
+    delay(1000);
+  #endif
+
+  Serial.begin(115200);
+  while (not Serial);
+
+  #if defined(EPOXY_DUINO)
+    Serial.setLineModeUnix();
+  #endif
 }
 
 void loop(void) {
+  TestRunner::run();
 }
