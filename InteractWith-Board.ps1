@@ -17,7 +17,6 @@ param (
         Project = @{
             SketchDir = "sketch";
             TestsDir = "tests";
-            VendorDir = "";
         };
 
         Board = @{
@@ -41,9 +40,9 @@ $Board = $ConnectionData.Board
 if ($Compile) {
     $Command = "& $($ArduinoCLI.Command) compile $($ArduinoCLI.Flags)
         --fqbn $($Board.LongName)
-        --port $($Board.Port)
-        $($Project.SketchDir)" -replace "\r\n", ""
+        $($Project.SketchDir)" -replace "\r\n *", " "
 
+    Write-Host $Command
     Invoke-Expression $Command
 }
 
@@ -52,8 +51,9 @@ if ($Upload) {
         --fqbn $($Board.LongName)
         --port $($Board.Port)
         --upload
-        $($Project.SketchDir)" -replace "\r\n", ""
+        $($Project.SketchDir)" -replace "\r\n *", " "
 
+    Write-Host $Command
     Invoke-Expression $Command
 }
 
@@ -62,8 +62,9 @@ if ($Test) {
         --fqbn $($Board.LongName)
         --port $($Board.Port)
         --upload
-        $($Project.TestsDir)" -replace "\r\n", ""
+        $($Project.TestsDir)" -replace "\r\n *", " "
 
+    Write-Host $Command
     Copy-Item -Recurse -Force "$($Project.SketchDir)/src" $Project.TestsDir
     Invoke-Expression $Command
 
