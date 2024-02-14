@@ -1,0 +1,12 @@
+[submodule "vendor/AUnit"]
+	path = vendor/AUnit
+	url = https://github.com/bxparks/AUnit
+[submodule "vendor/ParallelServo"]
+	path = vendor/ParallelServo
+	url = https://github.com/kevinmarquesp/ParallelServo
+[submodule "vendor/LinkedList"]
+	path = vendor/LinkedList
+	url = https://github.com/ivanseidel/LinkedList
+[submodule "vendor/Servo"]
+	path = vendor/Servo
+	url = https://github.com/arduino-libraries/Servo
