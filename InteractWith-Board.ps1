@@ -28,7 +28,10 @@ param (
 
         ArduinoCLI = @{
             Command = "arduino-cli.exe";
-            Flags = "";
+            Flags = "--library .\vendor\AUnit
+                     --library .\vendor\LinkedList
+                     --library .\vendor\Servo
+                     --library .\vendor\ParallelServo";
         };
     }
 )
